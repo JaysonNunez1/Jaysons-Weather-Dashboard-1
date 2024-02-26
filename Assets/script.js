@@ -29,4 +29,34 @@ function updateCurrentWeather(data){
 function updateFiveDayForecast(data) {
     const {forecastData} = data;
     fiveDay.style.display= 'block';
+
+    const forecastElement = document.createElement('div');
+    forecastElement.classList.add('card-deck');
+
+    for (let i=1;i<6;i++){
+        const forecastDay = forecastData.list[i*8-7];
+        const cardElement = document.createElement('div');
+        cardElement.classList.add('card', 'bg-primary', 'text-white','mt-2');
+        cardElement.style.width = '18rem';
+
+        const cardBody = document.createElement('div');
+        cardBody.classList.add('card-body');
+
+        const dateElement = document.createElement('h5');
+        dateElement.className='card-title';
+        dateElement.textContent= moment.unix(forecastDay.dt).format('MMMM Do YYYY');
+        const  tempElement = document.createElement('p');
+        tempElement.classList.add('card-text');
+        tempElement.textContent = `Temperature: ${forecastDay.main.temp}°F`;
+
+        const windElement = document.createElement('p');
+        windElement.classList.add('card-text');
+        windElement.textContent= `Wind Speed: ${forecastDay.wind.speed}MPH`;
+
+        const humidityElement = document.createElement('p');
+        humidityElement.classList.add('card-text');
+        humidityElement.textContent=`Humidity: ${forecastDay.main.humidity}%`;
+
+
+
 }
