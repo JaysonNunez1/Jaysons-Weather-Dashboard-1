@@ -66,4 +66,22 @@ function updateFiveDayForecast(data) {
         forecastElement.appendChild(cardElement);
     }
     fiveDay.appendChild(forecastElement);
-};
+}
+
+form.addEventListener('submit',async (e) => {
+    e.preventDefault();
+    const city = cityInput.ariaValueMax.trim();
+
+    if (city){
+        try {
+            const data = await fetchWeather(city);
+            console.log(data);
+            updateCurrentWeather(data);
+            updateFiveDayForecast(data);
+            cityInput.value= '';
+            } catch (error) {
+                console.error(error);
+                alert('Error fetching weather data.Please try again');
+            }
+        }
+});
