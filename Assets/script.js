@@ -25,3 +25,8 @@ function updateCurrentWeather(data){
     document.getElementById('humidity').textContent = `Humidity: ${forecastData.list[0].main.humidity}%`;
     document.getElementById('wind').textContent = `Wind Speed: ${forecastData.list[0].wind.speed} MPH`;
 }
+
+function updateFiveDayForecast(data) {
+    const {forecastData} = data;
+    fiveDay.style.display= 'block';
+}
