@@ -57,6 +57,13 @@ function updateFiveDayForecast(data) {
         humidityElement.classList.add('card-text');
         humidityElement.textContent=`Humidity: ${forecastDay.main.humidity}%`;
 
-
-
-}
+        cardBody.appendChild(dateElement);
+        cardBody.appendChild(iconElement);
+        cardBody.appendChild(tempElement);
+        cardBody.appendChild(humidityElement);
+        cardBody.appendChild(windElement);
+        cardBody.appendChild(cardBody);
+        forecastElement.appendChild(cardElement);
+    }
+    fiveDay.appendChild(forecastElement);
+};
