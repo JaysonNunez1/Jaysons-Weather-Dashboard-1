@@ -6,7 +6,7 @@ const current = document.getElementById('current');
 const fiveDay = document.getElementById('five-day');
 
 // Fetch the weather data for a given city
-async function fetchWeather(city) {
+async function fetchWeather(city = getCity()) {
   const geoUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
   const geoResponse = await fetch(geoUrl);
   const geoData = await geoResponse.json();
@@ -83,6 +83,7 @@ function updateFiveDayForecast(data) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const city = cityInput.value.trim();
+    storeCity(city);
   
     if (city) {
       try {
@@ -96,5 +97,11 @@ function updateFiveDayForecast(data) {
         console.error(error);
         alert('Error fetching weather data. Please try again.');
       }
+    }
+    function storeCity(city){
+        localStorage.setItem('city', city);
+    }
+    function getCity() {
+        return  localStorage.getItem('city');
     }
   });
